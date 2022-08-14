@@ -1,0 +1,86 @@
+body {text-align:center;	
+  margin: 0px;
+  padding: 2px;
+  font:100% Arial,Helvetica,sans-serif;  
+  overflow:auto;}
+.tablem {
+     margin: 0 auto;
+	border:1px;
+	text-align:center;
+	font-family: tahoma, verdana, arial, helvetica, sans-serif;
+    font-size: 14px;
+    border-collapse: collapse;
+
+  }
+.tablem, th, td
+{
+border: 1px solid #777777;
+border-collapse: collapse;
+}
+.disbox { 
+	height:25px;
+	width:100px;
+	color: #000000;
+	text-align: right;
+	border: 1px solid #777777;
+	border-collapse: collapse;
+	padding-right: 5px;
+	}
+
+.threefr { 
+	height:25px;
+	width:400px;
+	color: #000000;
+	text-align: left;
+	padding-left: 5px;
+	}
+
+.onefr { 
+	height:25px;
+	width:100px;
+	color: #000000;
+	border: 1px solid #777777;
+	border-collapse: collapse;
+	}
+.inpbox { 
+	height:100%;
+	width:94%;
+	color: #000000;
+	text-align: right;
+	border : none;
+	}
+.inpbox:focus {background-color: #F5F5F5;}
+
+.inpbox3 { 
+	height:100%;
+	width:94%;
+	color: #000000;
+	text-align: right;
+	border : none;
+	background-color: #F5F5F5;
+	}
+.inpbox3:focus {background-color: #FFFFFF;}
+.inpboxl { 
+	height:100%;
+	width:94%;
+	color: #000000;
+	text-align: left;
+	border : none;
+	}
+.inpboxl:focus {background-color: #F5F5F5;}
+.inpbox2 { 
+	height:100%;
+	width:94%;
+	color: #000000;
+	text-align: left;
+	border : none;
+	background-color: #F5F5F5;
+	}
+.inpbox2:focus {background-color: #FFFFFF;}
+.long { 
+	height:25px;
+	width:700px;
+	color: #000000;
+	text-align: left;
+	padding-left: 5px;
+	}
