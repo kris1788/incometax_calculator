@@ -1,2 +1,2 @@
-# incometax1
+Indian Income tax calculator using PHP
  
