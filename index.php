@@ -18,11 +18,37 @@ $zerotax[3]=300000;
 $zerotax[4]=500000;
 $notax = $zerotax[$aa[3]];
 $sal=floatval($aa[6]) + floatval($aa[7]) + floatval($aa[8]) + floatval($aa[9]) - $c80 - floatval($aa[12]) + floatval($aa[13]);
+$spinc=floatval($aa[14]) + floatval($aa[15]) + floatval($aa[16]) + floatval($aa[17]);
+
+if (($sal + $spinc)<250000.01) {$sptax1="0.00";$sptax2="0.00";$sptax3="0.00";$sptax4="0.00";}
+elseif (($sal + floatval($aa[14]) + floatval($aa[15])  + floatval($aa[16])) > 250000) {
+$sptax1=0.00;
+$sptax2=0.00;
+$sptax3= (($sal + floatval($aa[14]) + floatval($aa[15])  + floatval($aa[16])) - 250000) * .10;
+$sptax4=floatval($aa[17]) * .30;
+} elseif ($sal<250000.01&&($sal + $spinc)>250000) {
+if (($sal + floatval($aa[14])) > 250000) {
+$sptax1=(($sal + floatval($aa[14])) - 250000) * .15;
+$sptax2=floatval($aa[15]) * .20;
+$sptax3=floatval($aa[16]) * .10;
+$sptax4=floatval($aa[17]) * .30;
+} elseif (($sal + floatval($aa[14]) + floatval($aa[15])) > 250000) {
+$sptax1=0.00;
+$sptax2=(($sal + floatval($aa[14]) + floatval($aa[15])) - 250000) * .20;
+$sptax3=floatval($aa[16]) * .10;
+$sptax4=floatval($aa[17]) * .30;
+}  else {
+$sptax1=0.00;
+$sptax2=0.00;
+$sptax3= 0.00;
+$sptax4=(($sal + floatval($aa[14]) + floatval($aa[15])  + floatval($aa[16])   + floatval($aa[17])) - 250000) * .30;
+}
+} else {
 $sptax1=floatval($aa[14]) * .15;
 $sptax2=floatval($aa[15]) * .20;
 $sptax3=floatval($aa[16]) * .10;
 $sptax4=floatval($aa[17]) * .30;
-$spinc=floatval($aa[14]) + floatval($aa[15]) + floatval($aa[16]) + floatval($aa[17]);
+}
 $sptax = $sptax1 + $sptax2 + $sptax3 + $sptax4;
 $agri=$aa[10];
 if ($agri=="") $agri=0;
@@ -60,6 +86,79 @@ exit;
 <title>KRIS INCOME TAX CALCULATOR INDIA</title>
 <link rel="stylesheet" href="kris.css">
 <script src='kris.js'></script>
+
+<script>
+// When the user clicks on div, open the popup
+function myPopup(a) {
+var popup = document.getElementById("myPopup"+a);
+ popup.classList.toggle("show");
+}
+/*
+function lsfunction(a) {
+var popup = document.getElementById("myPopup"+a);
+  popup.classList.toggle("hide");
+}
+*/
+</script>
+
+<style>
+/* Popup container - can be anything you want */
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 600px;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+</style>
 </head>
 <body>
 <form>
@@ -81,7 +180,7 @@ echo "<td class='threefr'>Income from other sources(Interest, Commission etc)</t
 echo "<tr><td class='threefr' colspan=3>Income from other sources(Winnings from Lottery, Crossword Puzzles, etc 30%)</td><td class='onefr'><input type='text' id='ltincome' class='inpbox' onfocusout=indformat('ltincome'); /></td>";
 echo "<tr bgcolor='#F5F5F5'><td class='threefr'>Profits and Gains of Business or Profession (enter profit only)</td><td class='onefr'><input type='text' id='profit' class='inpbox3' onfocusout=indformat('profit'); /></td>";
 echo "<td class='threefr'>Agriculture income (For slab purpose only)</td><td class='onefr'><input type='text' id='agri' class='inpbox3' onfocusout=indformat('agri'); /></td>";
-echo "<tr><td class='threefr'>Deductions 80C</td><td class='onefr'><input type='text' id='c80' class='inpbox' onfocusout=indformat('c80'); /></td>";
+echo "<tr><td class='threefr' onmouseenter=myPopup(2); style='cursor: pointer;' onmouseleave=myPopup(2);>Deductions 80C</td><td class='onefr'><input type='text' id='c80' class='inpbox' onfocusout=indformat('c80'); /></td>";
 echo "<td class='threefr' onclick='display(3);' style='cursor: pointer;'>Deductions Others than 80C (Click to add details)</td><td class='disbox' id='d80' onclick='display(3);'  style='cursor: pointer;'></td>";
 
 echo "<tr bgcolor='#F5F5F5'><td  class='threefr' colspan=4 id='tdet'>Tax Details</td>";
@@ -95,6 +194,14 @@ echo "<tr><td class='threefr'>Health and Educational Cess</td><td class='disbox'
 echo "<td class='threefr'>Total Tax liability</td><td class='disbox' id='tot'></td>";
 echo "<tr><td colspan=4><input type='button' onclick='calculate();' value='Calculate' /></td>";
 echo "</table>";
+
+echo "<div class='popup'>";
+echo "<span class='popuptext' id='myPopup1'>Income from Buying and selling of stocks or equity-based fund units 12 months or less from date of purchase<br>Transferring shares via a recognised stock exchange<br>STT or Securities Transaction Tax is applicable on the sale of equity shares/funds<br>STCG on selling units of a trust<br>STCG through the sale of mutual fund units, business trust units or shares via a stock exchange situated in IFSC wherein foreign currency is used (even if there is no STT)<br>Total income including this less than 2.5 L then STCG is 0</span>";
+echo "<span class='popuptext' id='myPopup2'>";
+echo "Applicable investments(80C)<br>";
+echo "1. Contributing to Provident Fund<br>2. School fees of children<br>3. LIC premium<br>4. Home loan repayment (principal amount)<br>5. Registration expenses and stamp duty of house property<br>6. Equity-Linked Savings Scheme (ELSS)<br>7. Investment in NPS greater than 50000 (50000 counted into other than 80C)";
+echo "</span>";
+echo "</div>";
 
 echo "<div id='house' style='display:none;'>";
 echo "<table class='tablem'>";
@@ -113,7 +220,12 @@ echo "</div>";
 echo "<div id='capital' style='display:none;'>";
 echo "<table class='tablem'>";
 echo "<tr><td class='long'>Short Term Capital GainS (Other than covered under section 111A)</td><td class='onefr'><input type='text' id='cap1' class='inpbox' onchange=capital('cap1'); /></td>";
-echo "<tr><td class='long'>Short Term Capital GainS (Covered under section 111A tax @ 15%)</td><td class='onefr'><input type='text' id='cap2' class='inpbox'  onchange=capital('cap2'); /></td>";
+
+//echo "<div class='popup' onclick='myPopup();'";
+echo "<tr><td class='long'  onmouseenter=myPopup(1); style='cursor: pointer;' onmouseleave=myPopup(1);>Short Term Capital GainS (Covered under section 111A tax @ 15%)</td><td class='onefr'><input type='text' id='cap2' class='inpbox'  onchange=capital('cap2'); /></td>";
+
+//echo "</div>";
+
 echo "<tr><td class='long'>Long Term Capital Gains (Charged to tax @ 20%)</td><td class='onefr'><input type='text' id='cap3' class='inpbox' onchange=capital('cap3');  /></td>";
 echo "<tr><td class='long'>Long Term Capital Gains (Charged to tax @ 10%)</td><td class='onefr'><input type='text' id='cap4' class='inpbox' onchange=capital('cap4');  /></td>";
 echo "<tr><td colspan=2><input type='button' onclick='hide(2);' value='Hide' /></td>";
@@ -137,5 +249,7 @@ echo "<tr><td class='long'>Interest on deposits in saving account (u/s 80TTA) (M
 echo "<tr><td colspan=4><input type='button' onclick='hide(3);' value='Hide' /></td>";
 echo "</table>";
 echo "</div>";
+
 ?>
+
 </form></body></html>
