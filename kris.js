@@ -1,11 +1,13 @@
 function calculate(a) {
-	if (ayear.value==0) {alert("Select assesment year");ayear.focus();return;}
-	if (tpayer.value==0) {alert("Select tax payer");tpayer.focus();return;}
-	if (schm.value==0) {alert("Select New scheme or old scheme");schm.focus();return;}
-	if (gender.value==0) {alert("Select Male/ Female / Senior");gender.focus();return;}
-	if (rsstat.value==0) {alert("Select residential status");rsstat.focus();return;}
-	if (dob.value=="") {alert("Select/ Enter Date of birth");dob.focus();return;}
-var e=document.getElementById("ayear");
+	if (ayear.value==0&&a>1) {alert("Select assesment year");ayear.focus();return;}
+	if (tpayer.value==0&&a>2) {alert("Select tax payer");tpayer.focus();return;}
+	if (schm.value==0&&a>3) {alert("Select New scheme or old scheme");schm.focus();return;}
+	if (gender.value==0&&a>4) {alert("Select Male/ Female / Senior");gender.focus();return;}
+	if (rsstat.value==0&&a>5) {alert("Select residential status");rsstat.focus();return;}
+	if (dob.value==""&&a>6) {alert("Select/ Enter Date of birth");dob.focus();return;}
+	if (ayear.value==0||tpayer.value==0||schm.value==0||gender.value==0||rsstat.value==0||dob.value=="") return;
+	if (dob.value<"1900-01-01") return;
+	var e=document.getElementById("ayear");
 var a=e.options[e.selectedIndex].text;
 var f1=a.substring(0,4) - 1;
 var fyear="01.04."+ f1 +" to 31.03." + a.substring(0,4);
@@ -37,14 +39,17 @@ if (window.XMLHttpRequest) {
         xmlhttp.onreadystatechange = function() {
 			 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 				 var r=xmlhttp.responseText;
-				 var r1=r.split("#");
-				 document.getElementById("netinc").innerHTML=indformat1(r1[0]);
+				 var r1=r.split("#"); 
+				if (r1.length==8)
+				{document.getElementById("netinc").innerHTML=indformat1(r1[0]);
 				 document.getElementById("ctax").innerHTML=indformat1(r1[1]);
 				 document.getElementById("ptax").innerHTML=indformat1(r1[2]);
 				 document.getElementById("edu").innerHTML=indformat1(r1[3]);
 				 document.getElementById("tot").innerHTML=indformat1(r1[4]);
 				 document.getElementById("spinc").innerHTML=indformat1(r1[5]);
 				 document.getElementById("sptax").innerHTML=indformat1(r1[6]);
+				 document.getElementById("surc").innerHTML=indformat1(r1[7]);
+				 } else {alert(r);}
              }
         }			
         xmlhttp.open("POST","index.php",true);
@@ -134,7 +139,7 @@ var n=ab.length;
 	if (neg) {ab="-"+ab;}
 		document.getElementById(a).value=ab;
 	}
-		calculate();
+		//calculate();
 		}
 
 function indformat1(a) {
@@ -175,3 +180,22 @@ var tot=0;
 		}
 		document.getElementById("d80").innerHTML=indformat1(tot);
 			}
+
+function newschemopt() {
+if (schm.value==2)
+{document.getElementById("ipsel").style.display="inline";
+document.getElementById("ded80_1").style.display="inline";
+} else if (schm.value==1) {
+
+document.getElementById("ipself").value=0;
+document.getElementById("ipsel").style.display="none";;
+document.getElementById("ded80_1").style.display="none";;
+}
+
+}
+
+// When the user clicks on div, open the popup
+function myPopup(a) {
+var popup = document.getElementById("myPopup"+a);
+ popup.classList.toggle("show");
+}
