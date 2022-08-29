@@ -25,10 +25,36 @@ if (age >= 80&&gender.value!=4) {
 	alert("As per DOB you are Senior Citizen");
 	document.getElementById("gender").selectedIndex=3;
 } else if (gender.value>2&&age<60){
-	alert("As per DOB you have to select Male or Female");return;
+	alert("As per DOB you have to select Male or Female");
+	document.getElementById("gender").selectedIndex=1;
 }
-var data=ayear.value+"#"+tpayer.value+"#"+schm.value+"#"+gender.value+"#"+rsstat.value+"#"+dob.value+"#"+sal.value+"#"+hinc.innerHTML+"#"+oincome.value+"#"+profit.value+"#"+agri.value+"#"+c80.value+"#"+d80.innerHTML+"#"+cap1.value+"#"+cap2.value+"#"+cap3.value+"#"+cap4.value+"#"+ltincome.value;
+
+let text1=zero.value;
+if (text1=="") {alert("Incometax slabs not found, check your internet connection");retur;
+}
+const obj = JSON.parse(text1);
+var zerotax=0;
+for (i=0;i<obj.length;i++) {
+	if (obj[i].taxschm==schm.value&&obj[i].gender==gender.value) {zerotax=obj[i].amt;break;}
+}
+
+text1=taxrate.value;
+var obj1 = JSON.parse(text1);
+
+var amts = [];
+var rates = [];
+var a = 0;
+for(var i = 0; i < obj1.length; i++){
+if (obj1[i].taxschm==schm.value){
+	amts[a]=obj1[i].amt;
+	rates[a]=obj1[i].trate;
+    a = a + 1;              
+}
+}
+
+var data=ayear.value+"#"+tpayer.value+"#"+schm.value+"#"+gender.value+"#"+rsstat.value+"#"+dob.value+"#"+sal.value+"#"+hinc.innerHTML+"#"+oincome.value+"#"+profit.value+"#"+agri.value+"#"+c80.value+"#"+d80.innerHTML+"#"+cap1.value+"#"+cap2.value+"#"+cap3.value+"#"+cap4.value+"#"+cap5.value+"#"+ltincome.value;
 	data=data.replaceAll(",","");
+data=data+"#"+zerotax+"#"+amts+"#"+rates;
 if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -72,7 +98,7 @@ function display(a) {
 		document.getElementById("capital").style.display="none";
 		document.getElementById("house").style.display="none";
 		document.getElementById("ded80").style.display="inline";
-		document.getElementById("d2").focus();
+		document.getElementById("d3").focus();
 	}
 			}
 
@@ -114,6 +140,10 @@ var capt = 0;
 	}
 	if (!isNaN(parseInt(cap4.value))&& cap4.value!="") {
 		capt = capt + parseInt(cap4.value.replaceAll(",",""));
+	}	
+
+	if (!isNaN(parseInt(cap5.value))&& cap5.value!="") {
+		capt = capt + parseInt(cap5.value.replaceAll(",",""));
 	}	
 		document.getElementById("captot").innerHTML=indformat1(capt);
 			}
@@ -167,6 +197,7 @@ var n=ab.length;
 function ded80(a,b) {
 var aa;
 		aa=document.getElementById(a).value;
+		alert(aa);
 		aa=parseInt(aa.replaceAll(",",""));
 	if (aa > b){alert("Maximum amount allowed here is " + b);aa=b;}
 		aa=indformat1(aa);
@@ -174,8 +205,12 @@ var aa;
 var tot=0;
 		for (i=2;i<14;i++){
 		aa=document.getElementById("d"+i).value;
+		aa=parseInt(aa.replaceAll(",",""));
+		if (i>2&&schm.value==1)
+		{if (aa!=0)		{document.getElementById("d"+i).value=0;aa=0;}
+		}
 	if (!isNaN(parseInt(aa))&& aa!="") {
-		tot = tot + parseInt(aa.replaceAll(",",""));
+		tot = tot + aa;
 	}
 		}
 		document.getElementById("d80").innerHTML=indformat1(tot);
