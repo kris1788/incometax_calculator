@@ -18,6 +18,22 @@ body {text-align:center;
 border: 1px solid #777777;
 border-collapse: collapse;
 }
+
+.table2 {
+    margin: 0 auto;
+	border:1px;
+	width:75%;
+	text-align:center;
+	font-family: tahoma, verdana, arial, helvetica, sans-serif;
+    font-size: 14px;
+    border-collapse: collapse;
+
+  }
+.table2, th, td
+{
+border: 1px solid #777777;
+border-collapse: collapse;
+}
 .disbox { 
 	height:25px;
 	width:100px;

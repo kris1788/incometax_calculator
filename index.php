@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_REQUEST['cal'])) {
 	$a=$_REQUEST['cal'];
 	$aa=explode("#",$a);
@@ -136,13 +137,17 @@ exit;
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<title>KRIS INCOME TAX CALCULATOR INDIA</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Incometax Calculator India">
+	<meta name="keywords" content="Incometax india,Incometax,Incometax calculator,Incometax PHP,krisambali">
+	<meta name="author" content="KRISHNAN A AMBALI">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="kris.css">
 	<script src='kris.js'></script>
 </head>
 <body>
 	<form>
 	<?php
-
 		$zerotax=file_get_contents("https://krisambali.com/android/zerotax.php?taxyear=1");
 		$taxrate=file_get_contents("https://krisambali.com/android/taxrate.php?taxyear=1");
         echo "<input type='hidden' id='zero' value='$zerotax' />";
@@ -180,12 +185,13 @@ exit;
 	echo "<td class='threefr'>Total Tax liability</td><td class='disbox' id='tot'></td>";
 	
 	echo "</table>";
-	
+
 	echo "<div class='popup'>";
 	echo "<span class='popuptext' id='myPopup1'><U>Income under section 111(A)</U><br><br>Income from Buying and selling of stocks or equity-based fund units 12 months or less from date of purchase<br>Transferring shares via a recognised stock exchange<br>STT or Securities Transaction Tax is applicable on the sale of equity shares/funds<br>STCG on selling units of a trust<br>STCG through the sale of mutual fund units, business trust units or shares via a stock exchange situated in IFSC wherein foreign currency is used (even if there is no STT)<br>Total income including this less than 2.5 L then STCG tax is 0</span>";
+	
 	echo "<span class='popuptext' id='myPopup2'>";
 	echo "Applicable investments(80C)(Maximum 1.5 L)<br><br>";
-	echo "1. Contributing to Provident Fund<br>2. School fees of children<br>3. LIC premium<br>4. Home loan repayment (principal amount)<br>5. Registration expenses and stamp duty of house property<br>6. Equity-Linked Savings Scheme (ELSS)<br>7. Investment in NPS greater than 50000 (50000 counted into other than 80C)<br>8  If Section 115BAC Yes opted then above deductions not applicable";
+	echo "1. Contributing to Provident Fund<br>2. School fees/ Tuition fee of 2 children<br>3. LIC premium<br>4. Home loan repayment (principal amount)<br>5. Registration expenses and stamp duty of house property<br>6. Equity-Linked Savings Scheme (ELSS)<br>7. Investment in NPS greater than 50000 (50000 counted into other than 80C)<br>8. Investment in eligible mutual fund/ uti<br>9. Eligible 5year term deposit at banks/ post offices<br>10.Investment in NSC<br>11.80C eligible other investments<br>12.If Section 115BAC Yes opted then above deductions not applicable";
 	echo "</span>";
 
 	echo "<span class='popuptext' id='myPopup3'><U>Income under section 112(A)</U><br><br>Income from Buying and selling of stocks or equity-based fund units more than 12 months from date of purchase<br>Transferring shares via a recognised stock exchange<br>STT or Securities Transaction Tax is applicable on the sale of equity shares/funds<br>Tax is chargable above 1L only<br>Total income including this less than 2.5 L then LTCG tax is 0</span>";
@@ -209,17 +215,23 @@ exit;
 	echo "<span class='popuptext' id='myPopup10'><U>Deduction Under section 80DDB</U><br><br>1. Maximum deduction allowed under this section is 40T (For senior cityzen it is 1L)<br>2. Deduction applicable to treatment of self, spouse, children, parents, brothers or sisters<br>3. The deduction allowed for the amount paid for the treatment of following deseases only<br>a. Hematological disorders - 1. Thalassaemia and 2. Hemophilia.<br>b. Full Blown Acquired Immuno Deficiency Syndrome (AIDS)<br>c. Malignant Cancers<br>d. Neurological Disease (where the disability level has been 40% or above) 1. Motor Neuron Disease. 2. Chorea. 3. Aphasia. 4. Dementia. 5. Parkinsons Disease. 6. Dystonia Musculorum Deformans. 7. Ataxia. 8. Hemiballismus<br>e. Chronic Renal failure";
 	echo "</span>";
 
-	echo "<span class='popuptext' id='myPopup11'><U>Income tax surcharge</U><br><br>1. If total income is greater than 50 Lakh and 1 Crore or less 10% surcharge for calculated tax<br>2. If total income is greater than 1 Croe and 2 Crore or less 15% surcharge for calculated tax<br>3. If total income is greater than 2 Crore and 5 Crore or less 25% surcharge for calculated tax<br>4. If total income is greater than 5 Crore 37% surcharge for calculated tax<br>5. Marginal relief applicable for surcharge calculation<br>6. Taxable income at special rate other than winning from lottery and puzle maximum surcharge applicable is 15%";
+	echo "<span class='popuptext' id='myPopup11'><U>Income tax surcharge</U><br><br>1. If total income is above 50 Lakh and 1 Crore or less 10% surcharge for calculated tax<br>2. If total income is above 1 Croe and 2 Crore or less 15% surcharge for calculated tax<br>3. If total income is above 2 Crore and 5 Crore or less 25% surcharge for calculated tax<br>4. If total income is above 5 Crore 37% surcharge for calculated tax<br>5. Marginal relief applicable for surcharge calculation<br>6. Taxable income at special rate other than winning from lottery and puzle maximum surcharge applicable is 15%";
+	echo "</span>";
+	echo "<span class='popuptext' id='myPopup12'><U>Deduction under section 80DD</U><br><Br>1. This deduction is eligible to tax payers whose dependants are differently abled<br>2. Spouse, Children, Parents, Brothers and Sisters are considered as dipendants here<br>3. If disability is 40% or more and less than 80% deduction allowed is 75T<br>4. If disability is 80% or more deduction allowed is 1.25L<br>5. This deduction not allowed if differently abled person himself/ herself claimed deduction under section U";
 	echo "</span>";
 
+	echo "<span class='popuptext' id='myPopup13'><U>Deduction under section 80U</U><br><Br>1. This deduction is eligible to tax payers who are differently abled<br>2.  If disability is 40% or more and less than 80% deduction allowed is 75T<br>3. If disability is 80% or more deduction allowed is 1.25L";
+	echo "</span>";
+	echo "<span class='popuptext' id='myPopup14'><U>Deduction under 80G</U><br><br>1. Donations made to prescribed funds qualify deduction under this section<br>2. Donation should be in cheque, draft or cash. Donation as kind not eligible.<br>3. Donation through cash maximum limit is 2T.<br>4. Some donations are 100% eligible and some others 50% eligible<br>5. Some donations have maximum limit/ condions and some do not have such limit/ conditions.<br>6. Enter eligible amount not donation amount in this field";
+	echo "</span>";
 	echo "</div>";
-
+	
 	echo "<div id='house' style='display:none;'>";
 	echo "<div id='ipsel'>";
-	echo "<table class='tablem'>";
+	echo "<table class='table2'>";
 	echo "<tr><td style='width:500px;' id='h1' colspan=4 bgcolor='#C0C0C0'>Income from Self occupied house</td><tr><td class='threefr' id='ips'>Interest paid self occupied house</td><td class='onefr'><input type='text' id='ipself' class='inpbox' onchange=housing('ipself');calculate(); /></td>";
 	echo "</td></table></div>";
-	echo "<table class='tablem'>";
+	echo "<table class='table2'>";
 	echo "<tr><td colspan=4 class='threefr' bgcolor='#C0C0C0'>Income from rented house</td>";
 	echo "<tr><td class='threefr'>Annual Letable Value/Rent Received or Receivable</td><td class='onefr'><input type='text' id='hrent' class='inpbox'  onchange=housing('hrent');calculate(); /></td>";
 	echo "<td class='threefr'>Less: Municipal Taxes Paid During the Year</td><td class='onefr'><input type='text' id='htax' class='inpbox' onchange=housing('htax');calculate();  /></td>";
@@ -233,7 +245,7 @@ exit;
 	echo "</div>";
 
 	echo "<div id='capital' style='display:none;'>";
-	echo "<table class='tablem'>";
+	echo "<table class='table2'>";
 	echo "<tr><td class='long'>Short Term Capital GainS (Other than covered under section 111A)</td><td class='onefr'><input type='text' id='cap1' class='inpbox' onchange=capital('cap1');calculate(); /></td>";
 	echo "<tr><td class='long'  onmouseenter=myPopup(1); style='cursor: pointer;' onmouseleave=myPopup(1);>Short Term Capital GainS (Covered under section 111A tax @ 15%)</td><td class='onefr'><input type='text' id='cap2' class='inpbox'  onchange=capital('cap2');calculate(); /></td>";
 	echo "<tr><td class='long'>Long Term Capital Gains (Charged to tax @ 20%)</td><td class='onefr'><input type='text' id='cap3' class='inpbox' onchange=capital('cap3');calculate();  /></td>";
@@ -246,21 +258,21 @@ exit;
 	echo "</div>";
 
 	echo "<div id='ded80' style='display:none;'>";
-	echo "<table class='tablem'>";
+	echo "<table class='table2'>";
 	echo "<tr><td class='long' onmouseenter=myPopup(7); style='cursor: pointer;' onmouseleave=myPopup(7)>Employer's contribution toward NPS u/s 80CCD(1)</td><td class='onefr'><input type='text' id='d2' class='inpbox' onchange=ded80('d3',999999999);calculate();  /></td>";
 	echo "</table>";
 	echo "<div id='ded80_1'>";
-	echo "<table class='tablem'>";
+	echo "<table class='table2'>";
 	echo "<tr><td class='long'>Additional contribution towards NPS [u/s 80CCD(1B)] (Maximum 50000)</td><td class='onefr'><input type='text' id='d2' class='inpbox'  onchange=ded80('d3',50000);calculate(); /></td>";
 	echo "<tr><td class='long' onmouseenter=myPopup(8); style='cursor: pointer;' onmouseleave=myPopup(8);>Long-term infrastructure bonds (u/s 80CCF)</td><td class='onefr'><input type='text' id='d4' class='inpbox' onchange=ded80('d4',20000);calculate(); /></td>";
 	echo "<tr><td class='long' onmouseenter=myPopup(9); style='cursor: pointer;' onmouseleave=myPopup(9);>50 % of Investment under equity saving scheme u/s 80CCG</td><td class='onefr'><input type='text'  id='d5' class='inpbox' onchange=ded80('d5',25000);calculate();  /></td>";
 	echo "<tr><td class='long' onmouseenter=myPopup(6); style='cursor: pointer;' onmouseleave=myPopup(6);>Medi-claim premium (u/s 80D) (25T to 1.00L)</td><td class='onefr'><input type='text' id='d6' class='inpbox' onchange=ded80('d6',100000);calculate(); /></td>";
 	echo "<tr><td class='long' onmouseenter=myPopup(10); style='cursor: pointer;' onmouseleave=myPopup(10);>Actual payment towards medical treatment (u/s 80DDB) (Specified deseases maximum 100000)</td><td class='onefr'><input type='text' id='d7' class='inpbox'  onchange=ded80('d7',100000);calculate(); /></td>";
-	echo "<tr><td class='long'>Donations (u/s 80G)</td><td class='onefr'><input type='text' id='d8' class='inpbox' onchange=ded80('d8',9999999999);calculate();  /></td>";
-	echo "<tr><td class='long'>Deduction for maintenance / medical treatment of dependent (Differently abled) (u/s 80DD) (Maximum 125000)</td><td class='onefr'><input type='text' id='d9' class='inpbox' onchange=ded80('d9',125000);calculate();  /></td>";
+	echo "<tr><td class='long' onmouseenter=myPopup(14); style='cursor: pointer;' onmouseleave=myPopup(14);>Donations (u/s 80G)</td><td class='onefr'><input type='text' id='d8' class='inpbox' onchange=ded80('d8',9999999999);calculate();  /></td>";
+	echo "<tr><td class='long' onmouseenter=myPopup(12); style='cursor: pointer;' onmouseleave=myPopup(12);>Deduction for maintenance / medical treatment of dependent (Differently abled) (u/s 80DD) (Maximum 125000)</td><td class='onefr'><input type='text' id='d9' class='inpbox' onchange=ded80('d9',125000);calculate();  /></td>";
 	echo "<tr><td class='long'>Interest on loan for higher education (u/s 80E)</td><td class='onefr'><input type='text'  id='d10' class='inpbox' onchange=ded80('d10',9999999999);calculate();  /></td>";
 	echo "<tr><td class='long'>Interest on loan taken for Residential House sanctioned between 01.04.2016 and 31.03.2017  (u/s 80EE)</td><td class='onefr'><input type='text' id='d11' class='inpbox'  onchange=ded80('d11',50000);calculate(); /></td>";
-	echo "<tr><td class='long'>Deduction in case of a person with disability (u/s 80U) (75000 to 125000)</td><td class='onefr'><input type='text' id='d12' class='inpbox' onchange=ded80('d12',125000);calculate();  /></td>";
+	echo "<tr><td class='long' onmouseenter=myPopup(13); style='cursor: pointer;' onmouseleave=myPopup(13);>Deduction in case of a person with disability (u/s 80U) (75000 to 125000)</td><td class='onefr'><input type='text' id='d12' class='inpbox' onchange=ded80('d12',125000);calculate();  /></td>";
 	echo "<tr><td class='long'>Interest on deposits in saving account (u/s 80TTA) (Maximum 10000)</td><td class='onefr'><input type='text' id='d13' class='inpbox' onchange=ded80('d13',10000);calculate();  /></td>";
 	echo "<tr><td colspan=4><input type='button' onclick='hide(3);' value='Hide' /></td>";
 	echo "</table></div>";
